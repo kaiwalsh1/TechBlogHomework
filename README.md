@@ -2,7 +2,7 @@
 By: Kai Walsh
 
 ## Description
-Created a CMS-style blog where developers can publish their blog posts and comment on other developers' posts, too. This app is built from scratch and deployed on Heroku.
+Created a CMS-style blog where developers can publish their blog posts and comment on other developers' posts, too. This app is built from scratch and deployed on Heroku. It uses Handlebars.js as the templating language, Sequelize as the ORM, and express-session npm package for authentification. 
 
 ## User Story
 AS A developer who writes about tech
@@ -52,7 +52,7 @@ THEN I am able to view comments but I am prompted to log in again before I can a
 - [Questions](#Questions)
 
 ## Installation
-This app uses express, express-handlebars, handlebars, dotenv, MySQL2, and sequelize packages.
+This app uses express, express-session, connect-session-sequelize, express-handlebars, handlebars, bcrypt, dotenv, MySQL2, and sequelize packages.
 
 ## Usage
 
