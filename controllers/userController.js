@@ -54,7 +54,11 @@ module.exports = {
     // login
     login: async (req, res) => {
         try {
-            const userData = await User.findOne({ username: req.body.username });
+            const userData = await User.findOne({ 
+                where: {
+                    username: req.body.username 
+                }
+            });
             const userFound = userData.get({ plain: true });
             if (userFound.password === req.body.password) {
                 req.session.save(() => {
@@ -84,7 +88,7 @@ module.exports = {
             req.session.save(() => {
                 req.session.loggedIn = true;
                 req.session.user = user;
-                res.redirect('/todos');
+                res.redirect('/homepage');
             })
         } catch (e) {
             res.json(e);
@@ -107,4 +111,10 @@ module.exports = {
         res.render('signup');
     },
 
+// logout 
+    logout: (req, res) => {
+        req.session.destroy(() => {
+            res.send({ status: true });
+        });
+    },
 };

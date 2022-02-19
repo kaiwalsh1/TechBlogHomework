@@ -1,12 +1,19 @@
 $(document).ready(function() {
-    const signinBtn = $('#signinBtn');
+    const signupBtn = $('#signupBtn');
+    const emailField = $('#emailField');
+    const usernameField = $('#usernameField');
+    const passwordField = $('#passwordField');
+    
 
-    signinBtn.on('click', function(event) {
+
+    signupBtn.on('click', function(event) {
         event.preventDefault();
-        $.post('/api/users/login', {
+        $.post('/api/users/signup', {
             username: usernameField.val().trim(),
             password: passwordField.val().trim(),
         });
         window.location.href = '/homepage';
     });
+
+
 });
