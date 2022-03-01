@@ -1,0 +1,14 @@
+:root {
+    --brown: rbg(66,33,0);
+    --lightgreen: rbg(208,233,192);
+    --green: rbg(147,197,114);
+}
+
+body {
+    background-color: var(--brown);
+    font-family: 'Roboto', sans-serif;
+}
+
+.header {
+    font-size: 40px;
+}

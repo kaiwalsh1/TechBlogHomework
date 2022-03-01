@@ -5,24 +5,20 @@ const {
 module.exports = {
 // create a user
     createUser: async (req, res) => {
-        const { username, password } = req.body;
-        if (!username || !password) {
-            return res.status(400).json({ error: 'You must provide a username and password'});
+        const { username, email, password } = req.body;
+        if (!username || !email || !password) {
+            return res.status(400).json({ error: 'You must provide username, email, and password'});
         }
         try {
             const user = await User.create({
                 username,
+                email,
                 password,
             });
             res.json(user);
         } catch (e) {
             res.json(e);
         }
-    },
-
-// render homepage
-    renderHomepage: async (req, res) => {
-        res.render('homepage');
     },
 
 // get all users
@@ -69,19 +65,17 @@ module.exports = {
             }
         } catch (e) {
             res.json(e);
+            console.log(e);
         }
     },
 
 // sign up handler
     signupHandler: async (req, res) => {
-        const { email, username, password } = req.body;
-        if (!email || !username || !password) {
-            return res.json({ error: 'You must provide email, username, and password' });
-        }
+        const { username, email, password } = req.body;
         try {
             const createdUser = await User.create({
-                email,
                 username,
+                email,
                 password
             });
             const user = createdUser.get({ plain: true });
@@ -89,7 +83,7 @@ module.exports = {
                 req.session.loggedIn = true;
                 req.session.user = user;
                 res.redirect('/homepage');
-            })
+            });
         } catch (e) {
             res.json(e);
         }
@@ -100,7 +94,7 @@ module.exports = {
         if (req.session.loggedIn) {
             return res.redirect('/homepage');
         }
-        res.render('signup');
+        res.render('login');
     },
 
 // sign up view
@@ -116,5 +110,13 @@ module.exports = {
         req.session.destroy(() => {
             res.send({ status: true });
         });
+    },
+
+// render homepage
+    renderHomepage: async (req, res) => {
+        if (req.session.loggedIn) {
+            return res.redirect('/homepage');
+        }
+        res.render('signup');
     },
 };

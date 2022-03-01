@@ -4,16 +4,13 @@ $(document).ready(function() {
     const usernameField = $('#usernameField');
     const passwordField = $('#passwordField');
     
-
-
-    signupBtn.on('click', function(event) {
+    signupBtn.on('click', async function(event) {
         event.preventDefault();
-        $.post('/api/users/signup', {
-            username: usernameField.val().trim(),
-            password: passwordField.val().trim(),
-        });
-        window.location.href = '/homepage';
+        await $.post('/api/users/signup', {
+            email: emailField.val(),
+            username: usernameField.val(),
+            password: passwordField.val(),
+        });  
+        window.location.href = '/homepage'; 
     });
-
-
 });
