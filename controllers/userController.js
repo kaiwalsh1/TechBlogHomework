@@ -16,6 +16,7 @@ module.exports = {
                 password,
             });
             res.json(user);
+            console.log(user);
         } catch (e) {
             res.json(e);
         }
