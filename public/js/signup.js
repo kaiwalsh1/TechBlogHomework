@@ -4,6 +4,8 @@ $(document).ready(function() {
     const usernameField = $('#usernameField');
     const passwordField = $('#passwordField');
     
+
+    // Ajax Request
     signupBtn.on('click', async function(event) {
         event.preventDefault();
         await $.post('/api/users/signup', {
@@ -11,6 +13,6 @@ $(document).ready(function() {
             username: usernameField.val(),
             password: passwordField.val(),
         });  
-        window.location.href = '/homepage'; 
+        window.location.href = '/login'; 
     });
 });

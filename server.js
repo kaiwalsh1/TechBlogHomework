@@ -7,6 +7,7 @@ const helpers = require('./utils/helpers');
 const routes = require('./routes');
 const sequelize = require('./config');
 const User = require('./models/User');
+const { log } = console;
 
 const hbs = exphbs.create({
     helpers,
@@ -15,6 +16,7 @@ const hbs = exphbs.create({
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+log("PID: ", process.pid);
 const sessionSettings = {
     secret: process.env.SESSION_SECRET,
     resave: false,
