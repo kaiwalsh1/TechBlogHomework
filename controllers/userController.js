@@ -62,7 +62,7 @@ module.exports = {
                 req.session.save(() => {
                     req.session.loggedIn = true;
                     req.session.user = userFound;
-                    res.json({ success: true });
+                    res.json({ ok: "success" });
                 });
             }
         } catch (e) {
@@ -90,7 +90,6 @@ module.exports = {
             //     res.redirect("/login");
             // });
             // TODO - this won't work, and I'll explain why in a secin
-
         } catch (e) {
             console.log("E: ", e);
             res.json(e);
