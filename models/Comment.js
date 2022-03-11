@@ -1,49 +1,41 @@
 const { Model, DataTypes, UUIDV4 } = require('sequelize');
 const sequelize = require('../config');
 
-class Blog extends Model {}
+class Comment extends Model {}
 
-Blog.init(
+Comment.init(
     {
         id: {
             type: DataTypes.UUID,
             defaultValue: UUIDV4,
             primaryKey: true,
         },
-        title: {
+        text: {
             type: DataTypes.String,
+            required: true,
         },
-        content: {
-            type: DataTypes.String,
-        },
-        username: {
-            type: DataTypes.STRING,
-            references: {
-                model: 'user',
-                key: 'username',
-            },
-        },
-        author: {
-            type: DataTypes.STRING,
-            references: {
-                model: 'user',
-                key: 'id',
-            },
-        },
-        comments: {
+        blogId: {
             type: DataTypes.UUID,
             references: {
-                model: 'comment',
+                model: 'blog',
                 key: 'id'
             },
         },
+        userId: {
+            type: DataTypes.UUID,
+            references: {
+                model: 'user',
+                key: 'id'
+            }
+        },
+
     },
     {
         sequelize,
         timestamps: true,
         freezeTableName: true,
-        modelName: 'blog',
+        modelName: 'comment',
     }
 );
 
-module.exports = Blog;
+module.exports = Comment;
