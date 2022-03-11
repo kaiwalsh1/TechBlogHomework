@@ -16,3 +16,11 @@ body {
 .form-signin {
     
 }
+
+.navbar > .menubar {
+    display: inline-block;
+}
+
+.navbar > .menubar button {
+    padding: 10px 40px;
+}
