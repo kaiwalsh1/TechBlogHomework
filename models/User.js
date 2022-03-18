@@ -25,20 +25,6 @@ User.init(
                 len: [6]
             },
         },
-        blogId: {
-            type: DataTypes.UUID,
-            references: {
-                model: 'blog',
-                key: 'id',
-            },
-        },
-        commentId: {
-            type: DataTypes.UUID,
-            references: {
-                model: 'comment',
-                key: 'id',
-            },
-        },
     },
     {
         sequelize,

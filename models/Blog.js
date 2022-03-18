@@ -11,30 +11,18 @@ Blog.init(
             primaryKey: true,
         },
         title: {
-            type: DataTypes.String,
+            type: DataTypes.STRING,
+            allowNull: false,
         },
         content: {
-            type: DataTypes.String,
-        },
-        username: {
             type: DataTypes.STRING,
-            references: {
-                model: 'user',
-                key: 'username',
-            },
+            allowNull: false,
         },
-        author: {
-            type: DataTypes.STRING,
+        userId: {
+            type: DataTypes.UUID,
             references: {
                 model: 'user',
                 key: 'id',
-            },
-        },
-        comments: {
-            type: DataTypes.UUID,
-            references: {
-                model: 'comment',
-                key: 'id'
             },
         },
     },

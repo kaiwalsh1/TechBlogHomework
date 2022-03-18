@@ -11,24 +11,23 @@ Comment.init(
             primaryKey: true,
         },
         text: {
-            type: DataTypes.String,
-            required: true,
+            type: DataTypes.STRING,
+            allowNull: false,
         },
         blogId: {
             type: DataTypes.UUID,
             references: {
                 model: 'blog',
-                key: 'id'
+                key: 'id',
             },
         },
         userId: {
             type: DataTypes.UUID,
             references: {
                 model: 'user',
-                key: 'id'
-            }
+                key: 'id',
+            },
         },
-
     },
     {
         sequelize,
