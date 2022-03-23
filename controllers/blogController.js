@@ -6,14 +6,15 @@ const {
 module.exports = {
     // create blog
     createBlog: async (req, res) => {
-        if (!req.session.loggedIn) {
-            return res.render('/login');
-        };
-        const { title, content } = req.body;
+        // if (!req.session.loggedIn) {
+        //     return res.render('/login');
+        // };
+        const { title, content, userId } = req.body;
         try {
             const blog = await Blog.create({
                 title,
                 content,
+                userId
             });
             res.json(blog);
             console.log(blog);
@@ -51,9 +52,9 @@ module.exports = {
 
     // get user blogs
     getUserBlogs: async (req, res) => {
-        if (!req.session.loggedIn) {
-            return res.redirect('/login');
-        }
+        // if (!req.session.loggedIn) {
+        //     return res.redirect('/login');
+        // }
         try {
             const userBlogData = await Blog.findAll({
                 where: {
@@ -64,7 +65,7 @@ module.exports = {
                 ],
             });
             res.render('homepage', {
-                userBlogs: userBlogData.map(userBlog => userBlog.get({ plain: true }));
+                userBlogs: userBlogData.map(userBlog => userBlog.get({ plain: true })),
                 user: req.session.user,
             });
         } catch (e) {

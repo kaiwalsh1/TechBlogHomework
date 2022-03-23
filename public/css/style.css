@@ -1,11 +1,10 @@
 :root {
-    --brown: rbg(66,33,0);
-    --lightgreen: rbg(208,233,192);
-    --green: rbg(147,197,114);
+    --brown: rgb(66,33,0);
+    --lightgreen: rgb(208,233,192);
+    --green: rgb(147,197,114);
 }
 
 body {
-    background-color: var(--brown);
     font-family: 'Roboto', sans-serif;
 }
 
@@ -17,10 +16,16 @@ body {
     
 }
 
+.navbar {
+    background-color: rgb(66,33,0);
+}
+
 .navbar > .menubar {
     display: inline-block;
+    background-color: rgb(66,33,0);
 }
 
 .navbar > .menubar button {
     padding: 10px 40px;
+    box-shadow: 10px 10px;
 }
