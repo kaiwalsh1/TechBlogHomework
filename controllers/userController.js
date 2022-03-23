@@ -1,5 +1,6 @@
 const {
-    User
+    User,
+    Blog
 } = require('../models');
 
 module.exports = {
@@ -124,14 +125,17 @@ module.exports = {
         if (!req.session.loggedIn) {
             return res.redirect('/login');
         }
-        if (req.session.loggedIn) {
-            return res.render("homepage", {
-                user: req.session.user,
-            });
-        }
-
+        // if (req.session.loggedIn) {
+        //     return res.render("homepage", {
+        //         user: req.session.user,
+        //     });
+        // }
+        const blogData = await Blog.findAll({});
+        const blogs = blogData.map(blog => blog.get({ plain: true }));
+        console.log(blogs);
         res.render('homepage', {
             user: req.session.user,
+            blogs
         })
     },
 };

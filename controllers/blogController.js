@@ -6,9 +6,9 @@ const {
 module.exports = {
     // create blog
     createBlog: async (req, res) => {
-        // if (!req.session.loggedIn) {
-        //     return res.render('/login');
-        // };
+        if (!req.session.loggedIn) {
+            return res.render('/login');
+        };
         const { title, content, userId } = req.body;
         try {
             const blog = await Blog.create({
@@ -64,10 +64,12 @@ module.exports = {
                     ['createdAt', 'DESC'],
                 ],
             });
+            console.log(userBlogs);
             res.render('homepage', {
                 userBlogs: userBlogData.map(userBlog => userBlog.get({ plain: true })),
                 user: req.session.user,
             });
+            
         } catch (e) {
             res.json(e);
         }
@@ -76,7 +78,9 @@ module.exports = {
     // get all blogs
     getAllBlogs: async (req, res) => {
         try {
-            const blogData = await Blog.findAll({});
+            const blogData = await Blog.findAll({
+                
+            });
             const blogs = blogData.map(blog => blog.get({ plain: true }));
             res.render('allBlogs', {
                 blogs,
