@@ -79,11 +79,12 @@ module.exports = {
     getAllBlogs: async (req, res) => {
         try {
             const blogData = await Blog.findAll({
-                
+                userId: req.session.user.id,
             });
             const blogs = blogData.map(blog => blog.get({ plain: true }));
             res.render('allBlogs', {
                 blogs,
+                userId
             });
         } catch (e) {
             res.json(e);

@@ -18,14 +18,29 @@ body {
 
 .navbar {
     background-color: rgb(66,33,0);
+    color: white;
 }
 
 .navbar > .menubar {
     display: inline-block;
     background-color: rgb(66,33,0);
+    
 }
 
 .navbar > .menubar button {
     padding: 10px 40px;
     box-shadow: 10px 10px;
+}
+
+.navbar >.nav-item {
+    color: white;
+}
+
+.card {
+    padding: 50px 50px;
+    
+}
+
+.author {
+    display: inline-block;
 }
