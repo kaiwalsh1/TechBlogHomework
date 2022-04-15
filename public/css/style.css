@@ -16,6 +16,10 @@ body {
     
 }
 
+h4 {
+    color: white;
+}
+
 .navbar {
     background-color: rgb(66,33,0);
     color: white;
