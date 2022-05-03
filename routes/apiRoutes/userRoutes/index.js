@@ -5,12 +5,11 @@ const {
     login,
     signupHandler,
     logout,
-    getAllUsers,
+    // getAllUsers,
 } = require('../../../controllers/userController');
 
 router.route('/')
-    .post(createUser)
-    .get(getAllUsers);
+    .post(createUser);
 
 router.post('/signup', signupHandler);
 router.post('/login', login);

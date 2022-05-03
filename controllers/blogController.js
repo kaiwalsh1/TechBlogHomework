@@ -1,9 +1,11 @@
 const {
     Blog,
-    Comment
+    Comment,
+    User
 } = require('../models');
 
 module.exports = {
+    
     // create blog
     createBlog: async (req, res) => {
         if (!req.session.loggedIn) {
@@ -50,46 +52,6 @@ module.exports = {
             }
         },
 
-    // get user blogs
-    getUserBlogs: async (req, res) => {
-        // if (!req.session.loggedIn) {
-        //     return res.redirect('/login');
-        // }
-        try {
-            const userBlogData = await Blog.findAll({
-                where: {
-                    
-                },
-                order: [
-                    ['createdAt', 'DESC'],
-                ],
-            });
-            console.log(userBlogs);
-            res.render('homepage', {
-                userBlogs: userBlogData.map(userBlog => userBlog.get({ plain: true })),
-                user: req.session.user,
-            });
-            
-        } catch (e) {
-            res.json(e);
-        }
-    },
-
-    // get all blogs
-    getAllBlogs: async (req, res) => {
-        try {
-            const blogData = await Blog.findAll({
-                userId: req.session.user.id,
-            });
-            const blogs = blogData.map(blog => blog.get({ plain: true }));
-            res.render('allBlogs', {
-                blogs,
-                userId
-            });
-        } catch (e) {
-            res.json(e);
-        }
-    },
 
     // single blog
     getBlogById: async (req, res) => {
@@ -103,5 +65,61 @@ module.exports = {
             res.json(e);
         }
     },
+
+
+        // Get user blogs
+        getUserBlogs: async (req, res) => {
+            if (!req.session.loggedIn) {
+                return res.redirect('/login');
+            }
+            try {
+                const userBlogData = await Blog.findAll({
+                    where: {
+                        userId: req.session.user.id,
+                    },
+                    order: [
+                        ["createdAt", "DESC"]
+                    ]
+                });
+                res.render('homepage', {
+                    userBlogs: userBlogData.map(userBlog => userBlog.get({ plain: true })),
+                    user: req.session.user,
+                });
+            } catch (e) {
+                res.json(e);
+            }
+        },
+    
+        // get all blogs
+        getAllBlogs: async (req, res) => {
+            if (!req.session.loggedIn) {
+                return res.redirect('/login');
+            }
+            try {
+                const allBlogData = await Blog.findAll({
+                    include: [{
+                        model: Comment,
+                        attributes: ['text', 'createdAt', 'blogId'],
+                    },
+                    {
+                        model: User,
+                        attributes: ['username'],
+                    }],
+                    order: [
+                        ['createdAt', 'DESC'],
+                    ]
+                });
+                res.render('dashboard', {
+                    allBlogs: allBlogData.map(userBlog => userBlog.get({ plain: true })),
+                });
+            } catch (e) {
+                res.json(e);
+            }
+        },
+
+        // render new blog
+        renderBlog: async (req, res) => {
+            res.render('newblog');
+        },
     
 };

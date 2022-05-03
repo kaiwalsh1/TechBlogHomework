@@ -17,26 +17,24 @@ module.exports = {
                 password,
             });
             res.json(user);
-            console.log(user);
         } catch (e) {
-            console.log("Errorr: ", e);
             res.json(e);
         }
     },
 
 // get all users
-    getAllUsers: async (req, res) => {
-        try {
-            const usersData = await User.findAll({
-            });
-            const users = usersData.map(user => user.get({plain: true}));
-            res.render('allUsers', {
-                users,
-            });
-        } catch (e) {
-            res.json(e);
-        }
-    },
+    // getAllUsers: async (req, res) => {
+    //     try {
+    //         const usersData = await User.findAll({
+    //         });
+    //         const users = usersData.map(user => user.get({plain: true}));
+    //         res.render('allUsers', {
+    //             users,
+    //         });
+    //     } catch (e) {
+    //         res.json(e);
+    //     }
+    // },
 
 // single user
     getUserById: async (req, res) => {
@@ -72,13 +70,20 @@ module.exports = {
                 req.session.save(() => {
                     req.session.loggedIn = true;
                     req.session.user = userFound;
-                    res.json({ ok: "success" });
+                    res.json({ success: true });
                 });
             }
         } catch (e) {
             res.json(e);
             console.log(e);
         }
+    },
+
+    // logout 
+    logout: (req, res) => {
+        req.session.destroy(() => {
+            res.send({ status: true });
+        });
     },
 
 // sign up handler
@@ -91,9 +96,11 @@ module.exports = {
                 password,
             });
             const user = createdUser.get({ plain: true });
-            req.session.loggedIn = true;
-            req.session.user = user;
-            res.json({ ok: "success" });
+            req.session.save(() => {
+                req.session.loggedIn = true;
+                req.session.user = user;
+                res.redirect('/homepage');
+            });
         } catch (e) {
             res.json(e);
         }
@@ -115,29 +122,5 @@ module.exports = {
         res.render('signup');
     },
 
-// logout 
-    logout: (req, res) => {
-        req.session.destroy(() => {
-            res.send({ status: true });
-        });
-    },
 
-// render homepage
-//     renderHomepage: async (req, res) => {
-//         if (!req.session.loggedIn) {
-//             return res.redirect('/login');
-//         }
-//         // if (req.session.loggedIn) {
-//         //     return res.render("homepage", {
-//         //         user: req.session.user,
-//         //     });
-//         // }
-//         const blogData = await Blog.findAll({});
-//         const blogs = blogData.map(blog => blog.get({ plain: true }));
-//         console.log(req.session.user);
-//         res.render('homepage', {
-//             user: req.session.user,
-//             blogs
-//         })
-//     },
-// };
+};
