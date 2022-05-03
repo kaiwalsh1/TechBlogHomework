@@ -1,0 +1,39 @@
+{{> navbar}}
+
+<h3>Blog Comments</h3>
+
+<div class="card">
+    <div class="card-header justify-space-between">
+        <h1 class="title">{{ blog.title }}</h1>
+        <p class="author">Posted by: {{ user.username }}</p>
+        <h5>{{blog.createdAt}}</h5>
+    </div>
+    <div class="card-body">
+        <p>{{blog.content}}</p>
+    </div>
+    <div>
+        <h2>
+            <a href="/api/comments/{{ blog.id }}">Comments</a>
+        </h2>
+    </div>
+</div>
+
+{{#each allComments as |comm|}}
+<div class="comments">
+    <div class="card">
+        <div class="card-header">
+            <h4>{{ user.username }}</h4>
+            <h4>{{ comm.createdAt }}</h4>
+        </div>
+        <div class="card-body">
+            {{ comm.text }}
+        </div>
+    </div>
+</div>
+{{/each}}
+
+<button type="button" data-bs-toggle="modal" data-bs-target="#addNewComment" class="btn btn-dark btn-sm" id="commentBtn">
+    Add Comment
+</button>
+
+{{!-- add comment modal --}}

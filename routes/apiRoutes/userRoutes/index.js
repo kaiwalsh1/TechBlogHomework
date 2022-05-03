@@ -5,7 +5,6 @@ const {
     login,
     signupHandler,
     logout,
-    // getAllUsers,
 } = require('../../../controllers/userController');
 
 router.route('/')

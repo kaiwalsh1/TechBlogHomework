@@ -1,6 +1,6 @@
 $(document).ready(function() {
     const signinBtn = $('#signinBtn');
-    const logoutBtn = $('#logout')
+    const logoutBtn = $('#logoutBtn')
     const usernameField2 = $('#usernameField2');
     const passwordField2 = $('#passwordField2');
 
@@ -11,6 +11,12 @@ $(document).ready(function() {
             password: passwordField2.val().trim(),
         });
         window.location.href = '/homepage';
+    });
+
+    logoutBtn.on('click', function(event) {
+        event.preventDefault();
+        $.post('/api/users/logout');
+        window.location.href = '/';
     });
 
 });
