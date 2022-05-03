@@ -94,14 +94,7 @@ module.exports = {
             req.session.loggedIn = true;
             req.session.user = user;
             res.json({ ok: "success" });
-            // req.session.save(() => {
-            //     req.session.loggedIn = true;
-            //     req.session.user = user;
-            //     res.redirect("/login");
-            // });
-            // TODO - this won't work, and I'll explain why in a secin
         } catch (e) {
-            console.log("E: ", e);
             res.json(e);
         }
     },
@@ -130,21 +123,21 @@ module.exports = {
     },
 
 // render homepage
-    renderHomepage: async (req, res) => {
-        if (!req.session.loggedIn) {
-            return res.redirect('/login');
-        }
-        // if (req.session.loggedIn) {
-        //     return res.render("homepage", {
-        //         user: req.session.user,
-        //     });
-        // }
-        const blogData = await Blog.findAll({});
-        const blogs = blogData.map(blog => blog.get({ plain: true }));
-        console.log(req.session.user);
-        res.render('homepage', {
-            user: req.session.user,
-            blogs
-        })
-    },
-};
+//     renderHomepage: async (req, res) => {
+//         if (!req.session.loggedIn) {
+//             return res.redirect('/login');
+//         }
+//         // if (req.session.loggedIn) {
+//         //     return res.render("homepage", {
+//         //         user: req.session.user,
+//         //     });
+//         // }
+//         const blogData = await Blog.findAll({});
+//         const blogs = blogData.map(blog => blog.get({ plain: true }));
+//         console.log(req.session.user);
+//         res.render('homepage', {
+//             user: req.session.user,
+//             blogs
+//         })
+//     },
+// };

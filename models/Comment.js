@@ -13,6 +13,9 @@ Comment.init(
         text: {
             type: DataTypes.STRING,
             allowNull: false,
+            validate: {
+                max: 500,
+            },
         },
         blogId: {
             type: DataTypes.UUID,
