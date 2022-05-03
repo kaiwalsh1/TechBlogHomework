@@ -27,7 +27,8 @@ module.exports = {
 // get all users
     getAllUsers: async (req, res) => {
         try {
-            const usersData = await User.findAll({});
+            const usersData = await User.findAll({
+            });
             const users = usersData.map(user => user.get({plain: true}));
             res.render('allUsers', {
                 users,
@@ -39,11 +40,19 @@ module.exports = {
 
 // single user
     getUserById: async (req, res) => {
+        req.session.save(() => {
+            if (req.session.visitCount) {
+                req.session.visitCount++;
+            } else {
+                req.session.visitCount = 1;
+            }
+        });
         try {
             const userData = await User.findByPk(req.params.userId);
             const user = userData.get({ plain: true });
             res.render('singleUser', {
-                user
+                user,
+                visitCount: req.session.visitCount
             });
         } catch (e) {
             res.json(e);
@@ -55,7 +64,7 @@ module.exports = {
         try {
             const userData = await User.findOne({ 
                 where: {
-                    username: req.body.username 
+                    username: req.body.username
                 }
             });
             const userFound = userData.get({ plain: true });
@@ -132,7 +141,7 @@ module.exports = {
         // }
         const blogData = await Blog.findAll({});
         const blogs = blogData.map(blog => blog.get({ plain: true }));
-        console.log(blogs);
+        console.log(req.session.user);
         res.render('homepage', {
             user: req.session.user,
             blogs
