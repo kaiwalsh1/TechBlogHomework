@@ -13,10 +13,16 @@ Blog.init(
         title: {
             type: DataTypes.STRING,
             allowNull: false,
+            validate: {
+                max: 120,
+            },
         },
         content: {
             type: DataTypes.TEXT,
             allowNull: false,
+            validate: {
+                max: 1200,
+            },
         },
         userId: {
             type: DataTypes.UUID,
