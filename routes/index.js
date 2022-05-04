@@ -14,10 +14,3 @@ router.use('/api', apiRoutes);
 
 module.exports = router;
 
-
-
-// const { getUserPosts, getAllPosts, renderPost } = require('../controllers/postController');
-
-// router.get('/homepage', getUserPosts);
-// router.get('/dashboard', getAllPosts);
-// router.get('/newpost', renderPost);

@@ -37,3 +37,26 @@
 </button>
 
 {{!-- add comment modal --}}
+<div class="modal fade" id="addComment" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabelEvent" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabelEvent">Add New Comment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div ="container-fluid">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="newComment">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="hidden" class="form-control" value="{{ blog.id }}" id="newComBlogId">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark addCommentBtn" data-bs-dismiss="modal">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>

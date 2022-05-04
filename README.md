@@ -58,7 +58,7 @@ This app uses express, express-session, connect-session-sequelize, express-handl
 
 
 ## Credits
-HandlebarTodos and class videos, help from CJ Sanders, referenced our group project famYOUly.
+HandlebarTodos and class videos, help from CJ Sanders and Kirtley Adams, referenced our group project famYOUly.
 
 
 

@@ -34,7 +34,12 @@ h4 {
 .navbar > .menubar button {
     padding: 20px 40px;
     box-shadow: 5px 5px;
+    
 }
+
+/* #techBlogBtn {
+    color: aquamarine;
+} */
 
 .navbar >.nav-item {
     color: white;

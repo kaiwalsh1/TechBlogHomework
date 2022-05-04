@@ -12,7 +12,7 @@ module.exports = {
         try {
             const commentData = await Comment.findAll({
                 where: {
-                    postId
+                    blogId
                 },
                 include: [{
                     model: User,
