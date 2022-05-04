@@ -5,7 +5,7 @@ $(document).ready(function() {
     const editBlogBtn = $('#editBlogBtn');
     const deleteBlogBtn = $('#deleteBlogBtn');
 
-    addBlogBtn.on('click', function(event) {
+    addBlogBtn.on('click', async function(event) {
         event.preventDefault();
         await $.post('/api/blogs/newblog', {
             title: titleField.val(),

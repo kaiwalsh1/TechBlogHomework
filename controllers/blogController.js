@@ -8,18 +8,18 @@ module.exports = {
     
     // create blog
     createBlog: async (req, res) => {
-        if (!req.session.loggedIn) {
-            return res.render('/login');
-        };
+        // if (!req.session.loggedIn) {
+        //     return res.render('/login');
+        // };
         const { title, content, userId } = req.body;
         try {
             const blog = await Blog.create({
                 title,
                 content,
-                userId
+                userId,
             });
             res.json(blog);
-            console.log(blog);
+            console.log(req.body);
         } catch (e) {
             res.json(e);
         }
