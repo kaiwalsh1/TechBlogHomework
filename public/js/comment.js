@@ -9,6 +9,7 @@ $(document).ready(function() {
 			text: newComment.val(),
 			blogId: newComBlogId.val(),
 		});
+        console.log(newComment.val());
 		window.location.reload();
 	});
 });
