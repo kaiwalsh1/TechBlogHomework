@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	const addComment = $("#addCommentBtn");
+	const addCommentBtn = $("#addCommentBtn");
 	const newComment = $("#newComment");
 	const newComBlogId = $("#newComBlogId");
 	

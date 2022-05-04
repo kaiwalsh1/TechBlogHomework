@@ -4,16 +4,14 @@
 
 <div class="card">
     <div class="card-header justify-space-between">
-        <h1 class="title">{{ blog.title }}</h1>
-        <p class="author">Posted by: {{ user.username }}</p>
-        <h5>{{blog.createdAt}}</h5>
+        <h1 class="title">{{ blogs.title }}</h1>
     </div>
     <div class="card-body">
-        <p>{{blog.content}}</p>
+        <p>{{blogs.content}}</p>
     </div>
     <div>
         <h2>
-            <a href="/api/comments/{{ blog.id }}">Comments</a>
+            <a href="/api/comments/{{ blogs.id }}">Comments</a>
         </h2>
     </div>
 </div>
@@ -37,7 +35,7 @@
 </button>
 
 {{!-- add comment modal --}}
-<div class="modal fade" id="addComment" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabelEvent" aria-hidden="true">
+<div class="modal fade" id="addNewComment" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabelEvent" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -50,7 +48,7 @@
                         <input type="text" class="form-control" id="newComment">
                     </div>
                     <div class="input-group mb-3">
-                        <input type="hidden" class="form-control" value="{{ blog.id }}" id="newComBlogId">
+                        <input type="hidden" class="form-control" value="{{ blogs.id }}" id="newComBlogId">
                     </div>
                 </div>
             </div>
