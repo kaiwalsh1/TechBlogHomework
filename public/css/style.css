@@ -53,3 +53,7 @@ h4 {
 .author {
     display: inline-block;
 }
+
+#newblogbtn {
+    padding: 50px;
+}

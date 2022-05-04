@@ -41,6 +41,7 @@ module.exports = {
                 blogId,
                 userId: req.session.user.id,
             });
+            console.log(comment);
             res.json(comment);
         } catch (e) {
             res.json(e);

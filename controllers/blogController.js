@@ -81,6 +81,7 @@ module.exports = {
                         ["createdAt", "DESC"]
                     ]
                 });
+                console.log(req.session.user.id);
                 res.render('homepage', {
                     userBlogs: userBlogData.map(userBlog => userBlog.get({ plain: true })),
                     user: req.session.user,
