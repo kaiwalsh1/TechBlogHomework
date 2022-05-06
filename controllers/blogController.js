@@ -16,10 +16,9 @@ module.exports = {
             const blog = await Blog.create({
                 title,
                 content,
-                userId,
+                userId: req.session.user.id,
             });
             res.json(blog);
-            console.log(req.body);
         } catch (e) {
             res.json(e);
         }
@@ -27,12 +26,26 @@ module.exports = {
 
         // editBlog
         editBlog: async (req, res) => {
+            if (!req.session.loggedIn) {
+                return res.redirect('/login');
+            }
+            const { title, body } = req.body;
             try {
-                const blogData = await Blog.findByPk(req.params.blogId);
-                const blog = blogData.get({ plain: true });
-                res.render('editBlog', {
-                    blog
+                const blogData = await Blog.update(
+                    {
+                        title,
+                        body,
+                    }, 
+                    {
+                        where: {
+                            id: req.params.blogId,
+                        },
                 });
+                res.json(blogData);
+                // const blog = blogData.get({ plain: true });
+                // res.render('editBlog', {
+                //     blog
+                // });
             } catch (e) {
                 res.json(e);
             }
