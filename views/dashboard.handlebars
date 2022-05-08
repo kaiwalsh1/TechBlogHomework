@@ -1,21 +1,68 @@
 {{> navbar}}
 
-<h3>Dashboard</h3>
+<h1 class="text-center">Dashboard</h1>
 
-<div>
-    {{#each allBlogs as |blog|}}
-    <div class="card-header justify-space-between">
-        <h1 class="title">{{ blog.title }}</h1>
-        <p class="author">Posted by: {{ user.username }}</p>
-        <h5>{{blog.createdAt}}</h5>
+<div class="blogs">
+    {{#each blogs as |blog|}}
+    <div class="card">
+        <div class="card-header justify-space-between">
+            <h1 class="title">{{blog.title}}</h1>
+            <p class="author">Posted by {{user.username}}</p>
+            <h5>{{ blog.createdAt }}</h5>
+        </div>
+        <div class="card-body">
+            <p>{{ blog.content }}</p>
+        </div>
+        <div class="blogBtn">
+            <button type="button" data-bs-toggle="modal" data-bs-target="#t{{ blog.id }}" class="btn btn-dark btn-sm">
+                Delete Blog
+            </button>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#d{{ blog.id }}" class="btn btn-dark btn-sm">
+                Edit Blog
+            </button>
+        </div>
     </div>
-    <div class="card-body">
-        <p>{{blog.content}}</p>
+
+    <!-- Edit Blog Modal -->
+    <div class="modal fade" id="d{{ blog.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabelEvent" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabelEvent">Edit Blog</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div="container-fluid">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text col-5">Title</span>
+                            <input type="text" class="form-control" value="{{ blog.title }}" id="blogTitle"
+                                editname="{{ blog.id }}">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text col-5">Content</span>
+                            <input type="text" class="form-control" value="{{ blog.content }}" id="blogContent"
+                                editname="{{ blog.id }}">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="hidden" class="form-control" value="{{ blog.id }}" id="blogId"
+                                editname="{{ blog.id }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark editBlogBtn" data-bs-dismiss="modal"
+                        editname="{{ blog.id }}">Update Blog</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-        <h4>
-            <a href="/api/comments/{{ blog.id }}">Comments</a>
-        </h4>
-    </div>
+
     {{/each}}
+</div>
+
+<div id="newblogbtn" class="text-center">
+    <a href="/newblog">
+    <button type="button" class="btn btn-info btn-lg" id="createBlogBtn">Create New Blog</button>
+    </a>
 </div>

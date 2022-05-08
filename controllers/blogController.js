@@ -95,7 +95,7 @@ module.exports = {
                     ]
                 });
                 console.log(req.session.user.id);
-                res.render('homepage', {
+                res.render('dashboard', {
                     userBlogs: userBlogData.map(userBlog => userBlog.get({ plain: true })),
                     user: req.session.user,
                 });
@@ -123,8 +123,9 @@ module.exports = {
                         ['createdAt', 'DESC'],
                     ]
                 });
-                res.render('dashboard', {
+                res.render('homepage', {
                     allBlogs: allBlogData.map(userBlog => userBlog.get({ plain: true })),
+                    user: req.session.user,
                 });
             } catch (e) {
                 res.json(e);
