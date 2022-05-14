@@ -34,7 +34,7 @@ module.exports = {
     },
 
     createComment: async (req, res) => {
-        const { text, blogId } = req.body;
+        const { text, blogId, userId } = req.body;
         try {
             const comment = await Comment.create({
                 text,

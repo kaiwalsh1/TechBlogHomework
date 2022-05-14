@@ -14,8 +14,20 @@
     </div>
     <div>
         <h4>
+            {{!-- <a href="/api/comments/:blog.id">Comments</a> --}}
             <a href="/api/comments/{{ blog.id }}">Comments</a>
         </h4>
     </div>
     {{/each}}
 </div>
+
+{{!-- i would start by testing that a frontend comments page can render with no data then add the backend 
+call to the js and then add the returned data to the front end --}}
+{{!-- add a route for /comments/:blogId
+5:01
+get it to just output the blogId requested
+New
+5:02
+then update comments.js to pull the data --}}
+
+
