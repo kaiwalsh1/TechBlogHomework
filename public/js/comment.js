@@ -12,7 +12,7 @@ $(document).ready(function() {
 			text: newComment.val(),
 			blogId: newComBlogId.val(),
 		});
-        
 		window.location.reload();
 	});
+	
 });
