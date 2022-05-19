@@ -87,7 +87,7 @@ module.exports = {
     },
 
 // sign up handler
-    signupHandler: async (req, res) => {
+    signUpHandler: async (req, res) => {
         const { username, email, password } = req.body;
         try {
             const createdUser = await User.create({
@@ -115,11 +115,11 @@ module.exports = {
     },
 
 // sign up view
-    signupView: (req, res) => {
+    signUpView: (req, res) => {
         if (req.session.loggedIn) {
             return res.redirect('/homepage');
         }
-        res.render('signup');
+        res.render('signUp');
     },
 
 

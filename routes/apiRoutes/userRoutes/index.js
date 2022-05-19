@@ -3,7 +3,7 @@ const {
     createUser,
     getUserById,
     login,
-    signupHandler,
+    signUpHandler,
     logout,
 } = require('../../../controllers/userController');
 
@@ -13,11 +13,9 @@ router.route('/')
 router.route('/login')
     .post(login);
 
-router.route('/signup')
-    .post(signupHandler);
+router.route('/signUp')
+    .post(signUpHandler);
 
-// router.post('/signup', signupHandler);
-// router.post('/login', login);
 router.post('/logout', logout);
 
 

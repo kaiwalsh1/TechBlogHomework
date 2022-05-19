@@ -8,7 +8,7 @@ $(document).ready(function() {
     // Ajax Request
     signupBtn.on('click', async function(event) {
         event.preventDefault();
-        await $.post('/api/users/signup', {
+        await $.post('/api/users/signUp', {
             email: emailField.val(),
             username: usernameField.val(),
             password: passwordField.val(),
